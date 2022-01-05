@@ -23,7 +23,7 @@ class movie_details(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self,request):
-        print("request.getttttttttt",request.GET)
+      
         movies = Movie.objects.all()
         
         sort_by_field = request.GET.get("sort_by")
@@ -36,13 +36,13 @@ class movie_details(APIView):
 
         if sort_by_field:#if sort by field is sent checking here
             if sort_by_field in sortable_fields:#check for invalid fields
-                all_movies = movies.order_by(sort_by_field)
-                all_movies.order_by(sort_by_field)
+                movies = movies.order_by(sort_by_field)
+                movies.order_by(sort_by_field)
             else:
                 return  Response("Invalid sort filter",status=400)
         
 
 
-        movie_serializer = MovieSerializer(all_movies,many=True)
+        movie_serializer = MovieSerializer(movies,many=True)
         return Response(movie_serializer.data)
 
