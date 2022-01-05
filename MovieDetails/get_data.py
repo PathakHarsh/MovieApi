@@ -1,3 +1,6 @@
+#THIS FILE WAS USED TO SCRAPE THE IMDB WEBSITE TO GET MOVIE DATA
+
+
 
 from selenium import webdriver
 from bs4 import BeautifulSoup, dammit
@@ -29,7 +32,7 @@ body = table.find("tbody")
 movie_driver = webdriver.Chrome()
 
 all_trs = body.findAll("tr")
-all_trs = all_trs[78:]
+
 for a in all_trs:
 
     try:
